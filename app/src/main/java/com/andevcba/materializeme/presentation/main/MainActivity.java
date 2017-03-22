@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements OnListFragmentInt
     public void onListFragmentInteraction(Pattern pattern) {
         Intent intent = null;
 
+
+
         switch (Integer.valueOf(pattern.getId())) {
             case 0:
                 intent = new Intent(this, NavigationDrawerActivity.class);

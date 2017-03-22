@@ -58,52 +58,42 @@ public class PatternsAdapter extends RecyclerView.Adapter<PatternsAdapter.ViewHo
         });
 
         int drawable = 0;
-        int backgroundColor = 0;
 
         switch (Integer.valueOf(pattern.getId())) {
             case 0:
                 drawable = R.drawable.nav_drawer;
-                backgroundColor = R.color.md_green_500;
                 break;
             case 1:
                 drawable = R.drawable.nav_nested;
-                backgroundColor = R.color.md_light_blue_500;
                 break;
             case 2:
                 drawable = R.drawable.nav_expanding;
-                backgroundColor = R.color.md_blue_grey_500;
                 break;
             case 3:
                 drawable = R.drawable.nav_bottom;
-                backgroundColor = R.color.md_cyan_500;
                 break;
             case 4:
                 drawable = R.drawable.nav_tabs;
-                backgroundColor = R.color.md_deep_orange_500;
                 break;
             case 5:
                 drawable = R.drawable.nav_embedded;
-                backgroundColor = R.color.md_deep_purple_500;
                 break;
             case 6:
                 drawable = R.drawable.nav_gestural;
-                backgroundColor = R.color.md_lime_500;
                 break;
             case 7:
-                drawable = R.drawable.navi_incontext;
-                backgroundColor = R.color.md_purple_500;
+                drawable = R.drawable.nav_incontext;
                 break;
             case 8:
-                drawable = R.drawable.side_nav_bar;
-                backgroundColor = R.color.md_light_green_500;
+                drawable = R.drawable.nav_drawer_tabs;
                 break;
         }
 
         with(context).load(drawable).into(holder.image);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            holder.view.setBackgroundColor(context.getColor(backgroundColor));
+            holder.view.setBackgroundColor(context.getColor(R.color.md_blue_grey_500));
         } else {
-            holder.view.setBackgroundColor(context.getResources().getColor(backgroundColor));
+            holder.view.setBackgroundColor(context.getResources().getColor(R.color.md_blue_grey_500));
         }
     }
 
