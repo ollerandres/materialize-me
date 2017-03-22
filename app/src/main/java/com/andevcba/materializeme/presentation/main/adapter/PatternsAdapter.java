@@ -1,7 +1,6 @@
-package com.andevcba.materializeme.presentation.main;
+package com.andevcba.materializeme.presentation.main.adapter;
 
 import android.content.Context;
-import android.os.Build;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,20 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.andevcba.materializeme.R;
-import com.andevcba.materializeme.presentation.main.PatternsFragment.OnListFragmentInteractionListener;
-import com.andevcba.materializeme.presentation.main.model.Pattern;
+import com.andevcba.materializeme.presentation.main.fragment.PatternsFragment.OnListFragmentInteractionListener;
+import com.andevcba.materializeme.domain.model.Pattern;
+import com.squareup.picasso.Picasso;
 
-import java.util.List;
+import java.util.List;;
 
-import static com.squareup.picasso.Picasso.*;
+public class PatternsAdapter extends RecyclerView.Adapter<PatternsAdapter.ViewHolder> implements PatternsAdapterContract.View {
 
-public class PatternsAdapter extends RecyclerView.Adapter<PatternsAdapter.ViewHolder> {
-
+    private PatternsAdapterContract.Presenter presenter;
     private List<Pattern> patterns;
     private OnListFragmentInteractionListener listener;
     private Context context;
 
     public PatternsAdapter(Context context, List<Pattern> patterns, OnListFragmentInteractionListener listener) {
+        this.presenter = new PatternsAdapterPresenter(this);
         this.patterns = patterns;
         this.listener = listener;
         this.context = context;
@@ -51,55 +51,66 @@ public class PatternsAdapter extends RecyclerView.Adapter<PatternsAdapter.ViewHo
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (null != listener) {
-                    listener.onListFragmentInteraction(patterns.get(holder.getAdapterPosition()));
-                }
+                presenter.patternSelected(listener, patterns.get(holder.getAdapterPosition()));
             }
         });
 
-        int drawable = 0;
-
-        switch (Integer.valueOf(pattern.getId())) {
-            case 0:
-                drawable = R.drawable.nav_drawer;
-                break;
-            case 1:
-                drawable = R.drawable.nav_nested;
-                break;
-            case 2:
-                drawable = R.drawable.nav_expanding;
-                break;
-            case 3:
-                drawable = R.drawable.nav_bottom;
-                break;
-            case 4:
-                drawable = R.drawable.nav_tabs;
-                break;
-            case 5:
-                drawable = R.drawable.nav_embedded;
-                break;
-            case 6:
-                drawable = R.drawable.nav_gestural;
-                break;
-            case 7:
-                drawable = R.drawable.nav_incontext;
-                break;
-            case 8:
-                drawable = R.drawable.nav_drawer_tabs;
-                break;
-        }
-
-        with(context).load(drawable).into(holder.image);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            holder.view.setBackgroundColor(context.getColor(R.color.md_blue_grey_500));
-        } else {
-            holder.view.setBackgroundColor(context.getResources().getColor(R.color.md_blue_grey_500));
-        }
+        Picasso.with(context).load(presenter.getDrawableForPattern(pattern)).into(holder.image);
     }
 
     @Override
     public int getItemCount() {
         return patterns.size();
+    }
+
+    @Override
+    public void patternSelected(Pattern pattern) {
+        listener.onListFragmentInteraction(pattern);
+    }
+
+    @Override
+    public int getNavDrawerDrawable() {
+        return R.drawable.nav_drawer;
+    }
+
+    @Override
+    public int getNavNestedDrawable() {
+        return R.drawable.nav_nested;
+    }
+
+    @Override
+    public int getNavExpandingDrawable() {
+        return R.drawable.nav_expanding;
+    }
+
+    @Override
+    public int getNavBottomDrawable() {
+        return R.drawable.nav_bottom;
+    }
+
+    @Override
+    public int getNavTabsDrawable() {
+        return R.drawable.nav_tabs;
+    }
+
+    @Override
+    public int getNavEmbeddedDrawable() {
+        return R.drawable.nav_embedded;
+    }
+
+    @Override
+    public int getNavGesturalDrawable() {
+        return R.drawable.nav_gestural;
+    }
+
+    @Override
+    public int getNavInContextDrawable() {
+        return R.drawable.nav_incontext;
+    }
+
+    @Override
+    public int getNavDrawerTabsDrawable() {
+        return R.drawable.nav_drawer_tabs;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {

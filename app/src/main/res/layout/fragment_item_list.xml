@@ -10,5 +10,5 @@
     android:layout_marginLeft="4dp"
     android:layout_marginRight="4dp"
     app:layoutManager="LinearLayoutManager"
-    tools:context=".presentation.main.PatternsFragment"
+    tools:context=".presentation.main.fragment.PatternsFragment"
     tools:listitem="@layout/fragment_item"/>

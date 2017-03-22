@@ -29,6 +29,10 @@
         <item name="android:background">@color/black_overlay</item>
     </style>
 
+    <style name="CardView.Main" parent="CardView">
+        <item name="cardBackgroundColor">@color/md_blue_grey_500</item>
+    </style>
+
     <style name="TextView.Title.CardView.Materialized" parent="Base.TextAppearance.AppCompat.Title">
         <item name="android:textColor">@color/md_white_1000</item>
     </style>

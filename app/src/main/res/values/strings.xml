@@ -92,4 +92,6 @@
 
     <string name="title_activity_embedded_navigation">Embedded Navigation Pattern</string>
     <string name="title_activity_gestural_navigation">Gestural Navigation Pattern</string>
+    <string name="empty_pattern_error">Pattern do not exist</string>
+    <string name="set_layout_distribution">Set layout distribution</string>
 </resources>

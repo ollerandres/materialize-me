@@ -3,17 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_margin="4dp"
     android:layout_height="wrap_content"
-    android:layout_width="wrap_content">
+    android:layout_width="match_parent"
+    style="@style/CardView.Main">
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="4dp"
         android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_pattern"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"/>
 
@@ -21,13 +21,15 @@
                 android:id="@+id/tv_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextView.Title.CardView.Materialized"/>
+                android:textAppearance="@style/TextView.Title.CardView.Materialized"
+                android:padding="4dp"/>
 
             <TextView
                 android:id="@+id/tv_description"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextView.Body2.CardView.Materialized"/>
+                android:textAppearance="@style/TextView.Body2.CardView.Materialized"
+                android:padding="4dp"/>
     </LinearLayout>
 
 </android.support.v7.widget.CardView>
