@@ -34,5 +34,7 @@ interface PatternsFragmentContract {
         int chooseMenuLayoutItemDrawable();
 
         void changeLayoutDesign();
+
+        void setView(PatternsFragmentContract.View view);
     }
 }

@@ -48,7 +48,7 @@ public class PatternsFragment extends Fragment implements PatternsFragmentContra
         setHasOptionsMenu(true);
 
         context = getContext();
-        presenter = new PatternsFragmentPresenter(this);
+        presenter = new PatternsFragmentPresenter(new PatternsFragmentModel());
 
         if (getArguments() != null) {
             presenter.setColumnCount(getArguments().getInt(COLUMN_COUNT));
@@ -59,12 +59,10 @@ public class PatternsFragment extends Fragment implements PatternsFragmentContra
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_item_list, container, false);
 
+        presenter.setView(this);
+
         if (view instanceof RecyclerView) {
             recyclerView = (RecyclerView) view;
-
-            presenter.chooseLayoutColumns();
-
-            presenter.loadData();
         }
         return view;
     }
@@ -85,6 +83,13 @@ public class PatternsFragment extends Fragment implements PatternsFragmentContra
     public void onDetach() {
         super.onDetach();
         listener = null;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.chooseLayoutColumns();
+        presenter.loadData();
     }
 
     @Override

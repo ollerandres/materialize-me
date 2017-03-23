@@ -14,15 +14,19 @@ class PatternsFragmentPresenter implements PatternsFragmentContract.Presenter {
     PatternsFragmentContract.View view;
     PatternsFragmentModel model;
 
-    public PatternsFragmentPresenter(PatternsFragmentContract.View view) {
+    public PatternsFragmentPresenter(PatternsFragmentModel model) {
+        this.model = model;
+    }
+
+    @Override
+    public void setView(PatternsFragmentContract.View view) {
         this.view = view;
-        this.model = new PatternsFragmentModel();
     }
 
     @Override
     public void loadData() {
         if (view != null) {
-            view.setAdapter(patternsList());
+            view.setAdapter(populatePatternsList());
         }
     }
 
@@ -61,11 +65,9 @@ class PatternsFragmentPresenter implements PatternsFragmentContract.Presenter {
     @Override
     public void changeLayoutDesign() {
         if (view != null) {
-            int columnCount = model.getColumnCount();
-
-            if (columnCount <= 1) {
+            if (model.getColumnCount() <= 1) {
                 model.setColumnCount(2);
-                view.setGridLayout(model.getColumnCount());
+                view.setGridLayout(2);
             } else {
                 model.setColumnCount(1);
                 view.setLinearLayout();
@@ -73,7 +75,7 @@ class PatternsFragmentPresenter implements PatternsFragmentContract.Presenter {
         }
     }
 
-    private List<Pattern> patternsList() {
+    List<Pattern> populatePatternsList() {
         List<Pattern> patterns = new ArrayList<>();
         patterns.add(0,
                 new Pattern(String.valueOf(0),
